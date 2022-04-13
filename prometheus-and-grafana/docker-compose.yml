@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 services:
 
@@ -123,6 +123,28 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+
+  redis:
+    image: "bitnami/redis:latest"
+    container_name: redis
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=changeme
+
+  redis-exporter:
+    image: oliver006/redis_exporter
+    container_name: redis_exporter
+    ports:
+      - 9121:9121
+    environment:
+      REDIS_ADDR: "redis:6379"
+      REDIS_USER: null
+      REDIS_PASSWORD: changeme
+    links:
+      - redis
+      - prometheus
 
 networks:
   monitor-net:
