@@ -15,7 +15,7 @@ Additional info: [Docker - Prometheus and Grafana](https://bogotobogo.com/DevOps
 ### Create .env:
 ```
 ADMIN_USER=admin  
-ADMIN_PASSWORD=admin
+ADMIN_PASSWORD=changeme
 ```
 
 ### Clone this repository on your Docker host, cd into test directory and run compose up:
